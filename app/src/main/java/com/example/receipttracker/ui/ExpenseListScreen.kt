@@ -26,10 +26,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.receipttracker.data.Expense
+import com.example.receipttracker.data.ExpenseSummaries
 import com.example.receipttracker.data.FakeExpenseStore
 import com.example.receipttracker.data.formattedTotal
 import com.example.receipttracker.ui.theme.ReceiptTrackerTheme
-import java.time.LocalDate
+import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
 private val dateFormat = DateTimeFormatter.ofPattern("d MMM yyyy")
@@ -64,11 +65,8 @@ fun ExpenseListScreen(
 
 @Composable
 private fun MonthSummary(expenses: List<Expense>) {
-    val now = LocalDate.now()
-    // Only RON for now: mixing currencies needs exchange rates (a network concern, later).
-    val monthTotal = expenses
-        .filter { it.currency == "RON" && it.date.month == now.month && it.date.year == now.year }
-        .sumOf { it.totalMinor }
+    // One total per currency: converting would need exchange rates, which we may not have offline.
+    val summary = ExpenseSummaries.forMonth(expenses, YearMonth.now())
 
     Card(
         modifier = Modifier
@@ -78,11 +76,16 @@ private fun MonthSummary(expenses: List<Expense>) {
     ) {
         Column(Modifier.padding(16.dp)) {
             Text("Spent this month", style = MaterialTheme.typography.labelLarge)
-            Text(
-                "%.2f RON".format(monthTotal / 100.0),
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-            )
+            if (summary.isEmpty) {
+                Text("Nothing yet", style = MaterialTheme.typography.headlineMedium)
+            }
+            summary.totals.forEach { total ->
+                Text(
+                    total.formatted(),
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
         }
     }
 }

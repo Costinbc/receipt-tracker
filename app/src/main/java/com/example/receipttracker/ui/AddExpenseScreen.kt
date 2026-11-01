@@ -96,11 +96,12 @@ fun AddExpenseScreen(onSave: (Expense) -> Unit, onBack: () -> Unit) {
 
             Button(
                 onClick = {
+                    val totalMinor = parsedTotal ?: return@Button
                     onSave(
                         Expense(
                             id = 0, // the store assigns the real id
                             merchant = merchant.trim(),
-                            totalMinor = parsedTotal!!,
+                            totalMinor = totalMinor,
                             currency = "RON",
                             date = LocalDate.now(),
                             category = category,
