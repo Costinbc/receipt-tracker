@@ -12,21 +12,21 @@ object FakeExpenseStore {
     private val today = LocalDate.now()
 
     val expenses = mutableStateListOf(
-        Expense(1, "Lidl", 187.45, "RON", today, Category.GROCERIES, "Weekly shopping"),
-        Expense(2, "Bolt", 23.10, "RON", today, Category.TRANSPORT),
-        Expense(3, "Starbucks", 19.50, "RON", today.minusDays(1), Category.FOOD, "Flat white"),
-        Expense(4, "Mega Image", 64.20, "RON", today.minusDays(1), Category.GROCERIES),
-        Expense(5, "Enel", 212.00, "RON", today.minusDays(3), Category.BILLS, "Electricity, October"),
-        Expense(6, "eMAG", 349.99, "RON", today.minusDays(4), Category.SHOPPING, "Headphones"),
-        Expense(7, "Metrorex", 5.00, "RON", today.minusDays(4), Category.TRANSPORT),
-        Expense(8, "Shaormeria Dristor", 32.00, "RON", today.minusDays(5), Category.FOOD),
-        Expense(9, "Kaufland", 142.80, "RON", today.minusDays(7), Category.GROCERIES),
-        Expense(10, "Digi", 45.00, "RON", today.minusDays(9), Category.BILLS, "Internet"),
-        Expense(11, "Café de Flore", 9.80, "EUR", today.minusDays(12), Category.FOOD, "Paris trip"),
-        Expense(12, "RATP", 2.15, "EUR", today.minusDays(12), Category.TRANSPORT, "Paris trip"),
-        Expense(13, "Decathlon", 119.99, "RON", today.minusDays(15), Category.SHOPPING),
-        Expense(14, "Carrefour", 98.35, "RON", today.minusDays(18), Category.GROCERIES),
-        Expense(15, "Netflix", 59.99, "RON", today.minusDays(20), Category.OTHER, "Subscription"),
+        Expense(1, "Lidl", 18745, "RON", today, Category.GROCERIES, "Weekly shopping"),
+        Expense(2, "Bolt", 2310, "RON", today, Category.TRANSPORT),
+        Expense(3, "Starbucks", 1950, "RON", today.minusDays(1), Category.FOOD, "Flat white"),
+        Expense(4, "Mega Image", 6420, "RON", today.minusDays(1), Category.GROCERIES),
+        Expense(5, "Enel", 21200, "RON", today.minusDays(3), Category.BILLS, "Electricity, October"),
+        Expense(6, "eMAG", 34999, "RON", today.minusDays(4), Category.SHOPPING, "Headphones"),
+        Expense(7, "Metrorex", 500, "RON", today.minusDays(4), Category.TRANSPORT),
+        Expense(8, "Shaormeria Dristor", 3200, "RON", today.minusDays(5), Category.FOOD),
+        Expense(9, "Kaufland", 14280, "RON", today.minusDays(7), Category.GROCERIES),
+        Expense(10, "Digi", 4500, "RON", today.minusDays(9), Category.BILLS, "Internet"),
+        Expense(11, "Café de Flore", 980, "EUR", today.minusDays(12), Category.FOOD, "Paris trip"),
+        Expense(12, "RATP", 215, "EUR", today.minusDays(12), Category.TRANSPORT, "Paris trip"),
+        Expense(13, "Decathlon", 11999, "RON", today.minusDays(15), Category.SHOPPING),
+        Expense(14, "Carrefour", 9835, "RON", today.minusDays(18), Category.GROCERIES),
+        Expense(15, "Netflix", 5999, "RON", today.minusDays(20), Category.OTHER, "Subscription"),
     )
 
     fun find(id: Long): Expense? = expenses.firstOrNull { it.id == id }

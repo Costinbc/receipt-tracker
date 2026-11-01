@@ -68,7 +68,7 @@ private fun MonthSummary(expenses: List<Expense>) {
     // Only RON for now: mixing currencies needs exchange rates (a network concern, later).
     val monthTotal = expenses
         .filter { it.currency == "RON" && it.date.month == now.month && it.date.year == now.year }
-        .sumOf { it.total }
+        .sumOf { it.totalMinor }
 
     Card(
         modifier = Modifier
@@ -79,7 +79,7 @@ private fun MonthSummary(expenses: List<Expense>) {
         Column(Modifier.padding(16.dp)) {
             Text("Spent this month", style = MaterialTheme.typography.labelLarge)
             Text(
-                "%.2f RON".format(monthTotal),
+                "%.2f RON".format(monthTotal / 100.0),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
             )

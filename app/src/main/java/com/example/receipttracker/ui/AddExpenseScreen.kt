@@ -41,7 +41,7 @@ fun AddExpenseScreen(onSave: (Expense) -> Unit, onBack: () -> Unit) {
     var category by remember { mutableStateOf(Category.OTHER) }
     var note by remember { mutableStateOf("") }
 
-    val parsedTotal = total.replace(',', '.').toDoubleOrNull()
+    val parsedTotal = total.replace(',', '.').toDoubleOrNull()?.let { Math.round(it * 100) }
     val canSave = merchant.isNotBlank() && parsedTotal != null && parsedTotal > 0
 
     Scaffold(
@@ -100,7 +100,7 @@ fun AddExpenseScreen(onSave: (Expense) -> Unit, onBack: () -> Unit) {
                         Expense(
                             id = 0, // the store assigns the real id
                             merchant = merchant.trim(),
-                            total = parsedTotal!!,
+                            totalMinor = parsedTotal!!,
                             currency = "RON",
                             date = LocalDate.now(),
                             category = category,

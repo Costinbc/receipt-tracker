@@ -14,7 +14,7 @@ enum class Category(val label: String) {
 data class Expense(
     val id: Long,
     val merchant: String,
-    val total: Double,
+    val totalMinor: Long,
     val currency: String,
     val date: LocalDate,
     val category: Category,
@@ -23,4 +23,4 @@ data class Expense(
     val receiptPhoto: String? = null,
 )
 
-fun Expense.formattedTotal(): String = "%.2f %s".format(total, currency)
+fun Expense.formattedTotal(): String = "%.2f %s".format(totalMinor / 100.0, currency)
