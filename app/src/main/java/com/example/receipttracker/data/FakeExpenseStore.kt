@@ -29,10 +29,18 @@ object FakeExpenseStore {
         Expense(15, "Netflix", 59.99, "RON", today.minusDays(20), Category.OTHER, "Subscription"),
     )
 
+    // Newest date first; on the same date, the most recently added first.
+    private val newestFirst = compareByDescending<Expense> { it.date }.thenByDescending { it.id }
+
+    init {
+        expenses.sortWith(newestFirst)
+    }
+
     fun find(id: Long): Expense? = expenses.firstOrNull { it.id == id }
 
     fun add(expense: Expense) {
         val nextId = (expenses.maxOfOrNull { it.id } ?: 0) + 1
-        expenses.add(0, expense.copy(id = nextId))
+        expenses.add(expense.copy(id = nextId))
+        expenses.sortWith(newestFirst)
     }
 }
