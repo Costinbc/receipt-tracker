@@ -45,6 +45,7 @@ to run and measure, not a draft to read and approve.
 Optionally, keep a few prompts that worked especially well or especially badly, with a note on why.
 This is useful for you, and for your team if you are working in one.
 
-- **"Drive the emulator over adb and measure, don't estimate."** Worked well. It turned "500 items
-  is probably fine" into 26.7% janky frames and a 27 ms median, and it proved two of our own review
-  findings wrong.
+Note on stress testing from a prompt. Asking "is this fast enough?" only gets an opinion. What
+worked was telling the model to install the app on the emulator, drive it over adb, and for each
+Part 4 scenario name the command, run it, and show a screenshot. No claim without a command behind
+it. That is what found the real bugs, and what caught two of our own review findings being wrong.
