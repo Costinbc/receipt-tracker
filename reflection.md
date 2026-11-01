@@ -54,11 +54,3 @@ Gaps specific to this app:
 > and it cannot close that gap for us because closing it means *choosing* what the app should do
 > when things go wrong, and those choices are the design of the product, not a detail of its
 > implementation.
-
-## Honest note on this document
-
-The five checks above were run, not estimated, with screenshots at each step. Two findings in our
-own code review turned out to be **wrong** once tested — we had claimed the list was unsorted and
-that a restored detail screen would show "Expense not found". Neither reproduced. We are recording
-that here because it is the clearest evidence we have that reading code and running it are
-different activities.
